@@ -1,0 +1,8 @@
+.slider-item {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: 1px solid #000000;
+    width: 300px;
+    margin: 20px;
+}

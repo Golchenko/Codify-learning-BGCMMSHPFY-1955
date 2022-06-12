@@ -1,0 +1,56 @@
+{{ 'custom-slider.css' | asset_url | stylesheet_tag }}
+
+{% if section.settings.show_section %}
+   <div class="custom-slider page-width">
+      <div class="">
+         <h2>{{ section.settings.custom_text_title }}</h2>
+         {% unless section.settings.collection == blank %}
+         {%- assign collection = collections[section.settings.collection] -%}
+            <div class="custom-slider__wrapper">           
+                {%- for product in collection.products -%}
+                    <div class="custom-slider__product slider-item">
+                        <div class="slider-item__image">
+                            <img src="{{ product.featured_image | image_url: width: 280}}" alt="{{ product.title }}">
+                        </div>
+                        <div class="slider-item__text">
+                            <p>{{ product.title | truncate: 37 }}</p>
+                            <p>Price: {{ product.price | money }}</p>
+                        </div>
+                    </div>                        
+                {%- endfor -%}
+            </div>
+         {% endunless %}
+      </div>      
+   </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Custom slider",
+    "settings": [
+      {
+         "type": "checkbox",
+         "id": "show_section",
+         "default": true,
+         "label": "Show section"
+      },
+      {
+         "id": "custom_text_title",
+         "type": "text",
+         "label": "Text box heading",
+         "default": "Title"
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Collection"
+      }
+    ],
+    "presets": [
+      {
+         "name": "Custom slider",
+         "category": "Custom"
+      }
+   ]
+  }
+{% endschema %}
