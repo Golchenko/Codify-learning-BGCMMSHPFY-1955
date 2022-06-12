@@ -10,8 +10,8 @@
         </div> 
          {% unless section.settings.collection == blank %}
          {%- assign collection = collections[section.settings.collection] -%}
-            <div class="custom-slider">           
-                {%- for product in collection.products -%}
+            <div class="custom-slider" data-flickity='{ "cellAlign": "left", "contain": true, "wrapAround": true, "autoPlay": {{ section.settings.autoplay_speed }} }'>           
+                {%- for product in collection.products limit: section.settings.limit -%}
                     <div class="custom-slider__product slider-item">
                         <div class="slider-item__image">
                             <img src="{{ product.featured_image | image_url: width: 280}}" alt="{{ product.title }}">
@@ -27,16 +27,16 @@
    </div>
 {% endif %}
 
-<script>
+<!-- <script>
     var flkty = new Flickity( '.custom-slider', {
         cellAlign: 'left',
         contain: true,
         wrapAround: true,
-        autoPlay: true,
-        autoPlay: 3000,
+        autoPlay: '{{ section.settings.autoplay_speed }}',
         
 });
-</script>
+
+</script> -->
 
 {% schema %}
   {
@@ -58,7 +58,31 @@
         "type": "collection",
         "id": "collection",
         "label": "Collection"
-      }
+      },
+      {
+        "type": "number",
+        "id": "limit",
+        "label": "Products limit",
+        "default": 10
+      },
+      {
+        "type": "select",
+        "id": "autoplay_speed",
+        "label": "Autoplay speed",
+        "options": [
+            { "value": "1000", "label": "1 seconds" },
+            { "value": "2000", "label": "2 seconds" },
+            { "value": "3000", "label": "3 seconds" },
+            { "value": "4000", "label": "4 seconds" },
+            { "value": "5000", "label": "5 seconds" },
+            { "value": "6000", "label": "6 seconds" },
+            { "value": "7000", "label": "7 seconds" },
+            { "value": "8000", "label": "8 seconds" },
+            { "value": "9000", "label": "9 seconds" },
+            { "value": "10000", "label": "10 seconds" }
+          ],
+        "default": "3000"
+        }
     ],
     "presets": [
       {
