@@ -1,0 +1,40 @@
+{% if section.settings.show_section %}
+   <div class="custom-rich-text page-width">
+      <div class="color-background-2 content-container image-with-text__content">
+         <h2>{{ section.settings.custom_text_title }}</h2>
+         <div>{{ section.settings.custom_text_body }}</div>
+      </div>      
+   </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Custom rich text",
+    "settings": [
+      {
+         "type": "checkbox",
+         "id": "show_section",
+         "default": true,
+         "label": "Show section"
+      },
+      {
+         "id": "custom_text_title",
+         "type": "text",
+         "label": "Text box heading",
+         "default": "Title"
+      },
+      {
+        "id": "custom_text_body",
+        "type": "richtext",
+        "label": "Add custom text below",
+        "default": "<p>Add your text here</p>"
+      }
+    ],
+    "presets": [
+      {
+         "name": "Custom rich text",
+         "category": "Custom"
+      }
+   ]
+  }
+{% endschema %}
