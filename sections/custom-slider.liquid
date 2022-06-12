@@ -1,12 +1,16 @@
 {{ 'custom-slider.css' | asset_url | stylesheet_tag }}
+{{ 'flickity.css' | asset_url | stylesheet_tag }}
+{{ 'flickity.js' | asset_url | script_tag }}
+
 
 {% if section.settings.show_section %}
-   <div class="custom-slider page-width">
-      <div class="">
-         <h2>{{ section.settings.custom_text_title }}</h2>
+   <div class="custom-slider__wrapper">
+        <div class="page-width">
+             <h2>{{ section.settings.custom_text_title }}</h2>
+        </div> 
          {% unless section.settings.collection == blank %}
          {%- assign collection = collections[section.settings.collection] -%}
-            <div class="custom-slider__wrapper">           
+            <div class="custom-slider">           
                 {%- for product in collection.products -%}
                     <div class="custom-slider__product slider-item">
                         <div class="slider-item__image">
@@ -20,9 +24,19 @@
                 {%- endfor -%}
             </div>
          {% endunless %}
-      </div>      
    </div>
 {% endif %}
+
+<script>
+    var flkty = new Flickity( '.custom-slider', {
+        cellAlign: 'left',
+        contain: true,
+        wrapAround: true,
+        autoPlay: true,
+        autoPlay: 3000,
+        
+});
+</script>
 
 {% schema %}
   {

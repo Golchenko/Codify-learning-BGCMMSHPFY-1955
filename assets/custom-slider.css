@@ -6,3 +6,11 @@
     width: 300px;
     margin: 20px;
 }
+
+.custom-slider {
+    margin-left: 10px;
+}
+
+.custom-slider__wrapper {
+    margin: 120px 0;
+}
