@@ -213,6 +213,16 @@
         "custom_text_title": "Title",
         "custom_text_body": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>"
       }
+    },
+    "16550601617a810d9e": {
+      "type": "custom-slider",
+      "settings": {
+        "show_section": true,
+        "custom_text_title": "Title",
+        "collection": "ben-10",
+        "limit": 10,
+        "autoplay_speed": "3000"
+      }
     }
   },
   "order": [
@@ -222,6 +232,7 @@
     "collage",
     "video",
     "multicolumn",
-    "16550492514397527f"
+    "16550492514397527f",
+    "16550601617a810d9e"
   ]
 }
