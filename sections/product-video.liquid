@@ -1,0 +1,40 @@
+{{ 'product-video.css' | asset_url | stylesheet_tag }}
+
+{% if section.settings.show_section %}
+   <div class="product-video page-width">
+     <div class="video-wrapper">
+        {% assign videoId = section.settings.product_video | split: '?v=' %}
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/{{ videoId[1] }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+     </div>
+   </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Product video",
+    "settings": [
+      {
+         "type": "checkbox",
+         "id": "show_section",
+         "default": true,
+         "label": "Show section"
+      },
+      {
+        "type": "video_url",
+        "id": "product_video",
+        "label": "Product video",
+        "accept": [
+          "youtube",
+          "vimeo"
+        ]
+      }
+      
+    ],
+    "presets": [
+      {
+         "name": "Product video",
+         "category": "Custom"
+      }
+   ]
+  }
+{% endschema %}
