@@ -223,6 +223,13 @@
         "limit": 10,
         "autoplay_speed": "3000"
       }
+    },
+    "16550947326eec2502": {
+      "type": "product-video",
+      "settings": {
+        "show_section": true,
+        "product_video": "https:\/\/www.youtube.com\/watch?v=LiutZWmJikA"
+      }
     }
   },
   "order": [
@@ -233,6 +240,7 @@
     "video",
     "multicolumn",
     "16550492514397527f",
-    "16550601617a810d9e"
+    "16550601617a810d9e",
+    "16550947326eec2502"
   ]
 }
