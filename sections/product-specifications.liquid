@@ -1,0 +1,59 @@
+<!-- {{ 'product-specifications.css' | asset_url | stylesheet_tag }} -->
+
+{% if section.settings.show_section %}
+   {% if product.metafields.my_fields.product_specifications != blank %}
+   {% assign specs =  product.metafields.my_fields.product_specifications %}
+      <div class="product-specifications__wrapper page-width">
+         <h2>{{ section.settings.section_title }}</h2>
+         <table cellspacing="0" style="width: 100%" id="table-inner">
+              
+         </table>
+      </div>
+   {% endif %}   
+{% endif %}
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+       const specsInner = document.querySelector("#table-inner");
+      
+      let specifications = `{{specs}}`.replace(/;/gm, ':').replace(/"\n"/gm, '", "');
+      let jsonSpecs = JSON.parse(`{${specifications}}`);
+
+      for (const property in jsonSpecs) {
+
+         let tableRow = document.createElement("tr")		
+         specsInner.appendChild(tableRow)
+         
+			tableRow.appendChild(document.createElement("td")).textContent = `${property}`
+         tableRow.appendChild(document.createElement("td")).textContent = `${jsonSpecs[property]}`
+      }
+   }) 
+</script>
+
+
+{% schema %}
+  {
+    "name": "Product specifications",
+    "settings": [
+      {
+         "type": "checkbox",
+         "id": "show_section",
+         "default": true,
+         "label": "Show section"
+      },
+      {
+         "id": "section_title",
+         "type": "text",
+         "label": "Section Heading",
+         "default": "Product specifications"
+      }
+    ],
+    "presets": [
+      {
+         "name": "Product specifications",
+         "category": "Custom"
+      }
+   ]
+  }
+{% endschema %}
