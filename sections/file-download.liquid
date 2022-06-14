@@ -1,0 +1,53 @@
+{% if section.settings.show_section %}
+   <div class="file-download page-width">
+      <div class="color-background-2 content-container image-with-text__content">
+         <h2>{{ section.settings.custom_text_title }}</h2>
+         <a class="link-secondary" href="#" download="{{section.settings.button_link}}">Download product manual</a>
+      </div>      
+   </div>
+{% endif %}
+
+<style>
+    .link-secondary {
+        padding: 10px 20px;
+        border: 1px solid black;
+        color: #000;
+        text-decoration: none;
+    }
+
+    .link-secondary:hover {
+        border-width: 2px;
+        padding: 9px 19px;
+    }
+</style>
+
+{% schema %}
+  {
+    "name": "Product files",
+    "settings": [
+      {
+         "type": "checkbox",
+         "id": "show_section",
+         "default": true,
+         "label": "Show section"
+      },
+      {
+         "id": "custom_text_title",
+         "type": "text",
+         "label": "Text box heading",
+         "default": "Product manual"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      }
+    ],
+    "presets": [
+      {
+         "name": "Custom product manual",
+         "category": "Custom"
+      }
+   ]
+  }
+{% endschema %}
