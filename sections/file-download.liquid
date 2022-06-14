@@ -1,13 +1,19 @@
 {% if section.settings.show_section %}
-   <div class="file-download page-width">
-      <div class="color-background-2 content-container image-with-text__content">
-         <h2>{{ section.settings.custom_text_title }}</h2>
-         <a class="link-secondary" href="#" download="{{section.settings.button_link}}">Download product manual</a>
-      </div>      
-   </div>
+    {% if section.settings.button_link !=blank %}
+        <div class="file-download page-width">
+            <div class="color-background-2 content-container image-with-text__content">
+                <h2>{{ section.settings.custom_text_title }}</h2>
+                <a class="link-secondary" href="#" download="{{section.settings.button_link}}">Download product manual</a>
+            </div>      
+        </div>
+    {% endif %}
 {% endif %}
 
 <style>
+    .file-download {
+        padding-top: 30px;
+    }
+
     .link-secondary {
         padding: 10px 20px;
         border: 1px solid black;
