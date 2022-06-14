@@ -125,6 +125,14 @@
         "section_title": "Product specifications"
       }
     },
+    "1655226761bc5ce46e": {
+      "type": "file-download",
+      "settings": {
+        "show_section": true,
+        "custom_text_title": "Product manual",
+        "button_link": "{{ product.metafields.my_fields.product_manual.value }}"
+      }
+    },
     "image-with-text": {
       "type": "image-with-text",
       "blocks": {
@@ -219,22 +227,14 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
-    },
-    "1655226761bc5ce46e": {
-      "type": "file-download",
-      "settings": {
-        "show_section": true,
-        "custom_text_title": "Product manual",
-        "button_link": "{{ product.metafields.my_fields.product_manual.value }}"
-      }
     }
   },
   "order": [
     "main",
     "16552161691100153f",
+    "1655226761bc5ce46e",
     "image-with-text",
     "multicolumn",
-    "product-recommendations",
-    "1655226761bc5ce46e"
+    "product-recommendations"
   ]
 }
