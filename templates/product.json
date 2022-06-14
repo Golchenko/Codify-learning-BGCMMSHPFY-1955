@@ -118,6 +118,13 @@
         "padding_bottom": 12
       }
     },
+    "16552161691100153f": {
+      "type": "product-specifications",
+      "settings": {
+        "show_section": true,
+        "section_title": "Product specifications"
+      }
+    },
     "image-with-text": {
       "type": "image-with-text",
       "blocks": {
@@ -212,20 +219,13 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
-    },
-    "16552161691100153f": {
-      "type": "product-specifications",
-      "settings": {
-        "show_section": true,
-        "section_title": "Product specifications"
-      }
     }
   },
   "order": [
     "main",
+    "16552161691100153f",
     "image-with-text",
     "multicolumn",
-    "product-recommendations",
-    "16552161691100153f"
+    "product-recommendations"
   ]
 }
