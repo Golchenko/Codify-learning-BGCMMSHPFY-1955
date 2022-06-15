@@ -34,14 +34,18 @@
 {% endschema %}
 
 
-<!-- <style>
-    .product-search__wrapper {
-        width: 80%;
-        margin: 0 auto;
-        padding: 30px;
+<style>
+    .search-result__list {
+        width: 300px;
+        padding: 20px;
         border: 1px solid #000;
+        margin-top: 30px;
     }
-</style> -->
+
+    .search-result__list img {
+      width: 100%;
+    }
+</style>
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
@@ -82,22 +86,15 @@
 
   let showSearchResult = (firstProductSuggestion) => {
     resultField = document.querySelector(".product-search__result");
+    console.log(firstProductSuggestion);
 
     searchResultTemplate = `
-        <ul class="search-result__list">
-            <li class="search-result__item">
-                <span>Product: ${firstProductSuggestion.title}</span>
-            </li>
-            <li class="search-result__item">
-                <img src=${firstProductSuggestion.image} alt="Product image">
-            </li>
-            <li class="search-result__item">
-                <span>${firstProductSuggestion.price}</span>
-            </li>
-            <li class="search-result__item">
-                <p>${firstProductSuggestion.description}</p>
-            </li>
-        </ul>
+        <div class="search-result__list">
+          <img src=${firstProductSuggestion.image} alt="Product image">
+          <p>Product: ${firstProductSuggestion.title}</p>
+          <p>Price: ${firstProductSuggestion.price}</p>
+          <p>Description: ${firstProductSuggestion.body}</p>
+        </div>
     `
     resultField.innerHTML = searchResultTemplate;
   };
