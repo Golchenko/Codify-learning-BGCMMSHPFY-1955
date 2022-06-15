@@ -1,0 +1,103 @@
+{% if section.settings.show_section %} 
+{% assign productId = product.id %}
+    <div class="product-recommendations page-width ">
+        {%- if recommendations.performed and recommendations.products_count > 0-%}
+            <h2>{{ section.settings.section_title }}</h2>
+            <ul class="recommendations-list grid product-grid grid--2-col-tablet-down grid--5-col-desktop">
+                {%- for product in recommendations.products -%}
+                    <li class="grid__item ">
+                        {% render 'card-product',
+                            card_product: product,
+                            lazy_load: lazy_load,
+                            section_id: section.id
+                        %}
+                    </li>
+                {%- endfor -%}
+            </ul>
+        {%- endif -%}
+    </div>
+{% endif %}
+
+
+
+<style>
+    .recommendations-list .card__inner .card__content {
+        display: none;
+    }
+
+    .recommendations-list .media  {
+        width: 214px;
+        height: 214px;
+    }
+</style>
+
+<script>
+    const productRecommendationsSection = document.querySelector('.product-recommendations');
+    fetch(window.Shopify.routes.root + `recommendations/products?product_id={{productId}}&limit=5&section_id={{section.id}}`)
+    .then(response => response.text())
+    .then((text) => {
+    const html = document.createElement('div');
+    html.innerHTML = text;
+    const recommendations = html.querySelector('.product-recommendations');
+
+    if (recommendations && recommendations.innerHTML.trim().length) {
+      productRecommendationsSection.innerHTML = recommendations.innerHTML;
+    }
+ });
+</script>
+
+<!-- <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        fetch(window.Shopify.routes.root + `recommendations/products.json?product_id={{productId}}&limit=5`)
+        .then(response => response.json())
+        .then(({ products }) => {
+            if (products.length > 0) {
+                renderProducts(products);
+            }
+        });  
+        
+        const renderProducts = (products) => {
+            const section = document.querySelector(".recomendations-inner");
+            let productsTemplate = "";
+            console.log(products);
+            products.map((product) => {
+                productsTemplate = `
+                    <div class="recommendations__item">
+                        <img src="${product.featured_image}" alt="product image">
+                        <p>${product.title}</p>
+                        <p>${product.price}</p>
+                    </div>
+                `
+                
+            })
+            section.innerHTML = productsTemplate;
+        }
+    });
+</script> -->
+
+{% schema %}
+  {
+    "name": "Custom recommendations",
+    "settings": [
+      {
+         "type": "checkbox",
+         "id": "show_section",
+         "default": true,
+         "label": "Show section"
+      },
+      {
+        "id": "section_title",
+        "type": "text",
+        "label": "Section heading",
+        "default": "Product recommendations"
+     }
+    ],
+    "presets": [
+      {
+         "name": "Custom recommendations",
+         "category": "Custom"
+      }
+   ]
+  }
+{% endschema %}
