@@ -12,7 +12,6 @@
                     <li class="grid__item ">
                         {% render 'card-product',
                             card_product: product,
-                            media_aspect_ratio: adapt,
                             lazy_load: lazy_load,
                             section_id: section.id
                         %} 
@@ -23,14 +22,6 @@
     </div>
 {% endif %}
 
-
-
-<style>
-    /* .recommendations-list .card__inner .card__content {
-        display: none;
-    } */
-
-</style>
 
 <script>
     const productRecommendationsSection = document.querySelector('.product-recommendations');
