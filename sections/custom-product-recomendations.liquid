@@ -1,16 +1,21 @@
+<link rel="stylesheet" href="{{ 'component-card.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'section-product-recommendations.css' | asset_url }}" media="print" onload="this.media='all'">
+
 {% if section.settings.show_section %} 
 {% assign productId = product.id %}
-    <div class="product-recommendations page-width ">
+    <div class="product-recommendations page-width" style="margin: 0 auto;">
         {%- if recommendations.performed and recommendations.products_count > 0-%}
             <h2>{{ section.settings.section_title }}</h2>
-            <ul class="recommendations-list grid product-grid grid--2-col-tablet-down grid--5-col-desktop">
+            <ul class="grid product-grid grid--5-col-desktop grid--2-col-tablet-down" role="list">
                 {%- for product in recommendations.products -%}
                     <li class="grid__item ">
                         {% render 'card-product',
                             card_product: product,
+                            media_aspect_ratio: adapt,
                             lazy_load: lazy_load,
                             section_id: section.id
-                        %}
+                        %} 
                     </li>
                 {%- endfor -%}
             </ul>
@@ -21,14 +26,10 @@
 
 
 <style>
-    .recommendations-list .card__inner .card__content {
+    /* .recommendations-list .card__inner .card__content {
         display: none;
-    }
+    } */
 
-    .recommendations-list .media  {
-        width: 214px;
-        height: 214px;
-    }
 </style>
 
 <script>
