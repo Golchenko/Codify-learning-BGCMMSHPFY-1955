@@ -140,6 +140,13 @@
         "section_title": "Product recommendations"
       }
     },
+    "165531610564f80ad0": {
+      "type": "product-search",
+      "settings": {
+        "show_section": true,
+        "section_title": "Product search"
+      }
+    },
     "image-with-text": {
       "type": "image-with-text",
       "blocks": {
@@ -242,6 +249,7 @@
     "16552161691100153f",
     "1655226761bc5ce46e",
     "165531172211bd13bf",
+    "165531610564f80ad0",
     "image-with-text",
     "multicolumn",
     "product-recommendations"
