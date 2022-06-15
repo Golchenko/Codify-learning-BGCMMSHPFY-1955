@@ -1,0 +1,105 @@
+<div class="product-search__wrapper page-width">
+  <h2>{{ section.settings.section_title }}</h2>
+    <form class="product-search__form">
+        <input class="product-search__input" type="text" placeholder="Enter product code...">
+        <button class="product-search__button" type="submit">Submit</button>
+    </form>
+    <div class="product-search__result"></div>
+</div>
+
+{% schema %}
+{
+  "name": "Product search",
+  "settings": [
+    {
+       "type": "checkbox",
+       "id": "show_section",
+       "default": true,
+       "label": "Show section"
+    },
+    {
+       "id": "section_title",
+       "type": "text",
+       "label": "Text box heading",
+       "default": "Title"
+    }
+  ],
+  "presets": [
+    {
+       "name": "Product search",
+       "category": "Custom"
+    }
+ ]
+}
+{% endschema %}
+
+
+<!-- <style>
+    .product-search__wrapper {
+        width: 80%;
+        margin: 0 auto;
+        padding: 30px;
+        border: 1px solid #000;
+    }
+</style> -->
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const submitBbutton = document.querySelector(".product-search__button"),
+        inputField = document.querySelector(".product-search__input");
+        
+    submitBbutton.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      let inputData = inputField.value;
+
+      if (inputData) {
+        searchRequest(inputData);
+      }
+    });
+  });
+
+  let searchRequest = (inputData) => {
+    let options = "&resources[type]=product&resources[options][fields]=title,product_type,variants.title,variants.sku";
+    // let host = "{{ request.origin }}"
+    let host = "http://127.0.0.1:9292";
+    let fields = ""
+
+    fetch(`${host}/search/suggest.json?q=${inputData}${options}`)
+      .then((response) => response.json())
+      .then((suggestions) => {
+        const productSuggestions = suggestions.resources.results.products;
+
+        if (productSuggestions.length > 0) {
+          const firstProductSuggestion = productSuggestions[0];
+          showSearchResult(firstProductSuggestion);
+        } else {
+            alert("Nothing found")
+            console.log("Nothing found");
+        }
+      });
+  };
+
+  let showSearchResult = (firstProductSuggestion) => {
+    resultField = document.querySelector(".product-search__result");
+
+    searchResultTemplate = `
+        <ul class="search-result__list">
+            <li class="search-result__item">
+                <span>Product: ${firstProductSuggestion.title}</span>
+            </li>
+            <li class="search-result__item">
+                <img src=${firstProductSuggestion.image} alt="Product image">
+            </li>
+            <li class="search-result__item">
+                <span>${firstProductSuggestion.price}</span>
+            </li>
+            <li class="search-result__item">
+                <p>${firstProductSuggestion.description}</p>
+            </li>
+        </ul>
+    `
+    resultField.innerHTML = searchResultTemplate;
+  };
+</script>
+
