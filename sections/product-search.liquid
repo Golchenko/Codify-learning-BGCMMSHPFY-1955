@@ -65,9 +65,9 @@
 
   let searchRequest = (inputData) => {
     let options = "&resources[type]=product&resources[options][fields]=title,product_type,variants.title,variants.sku";
-    // let host = "{{ request.origin }}"
-    let host = "http://127.0.0.1:9292";
-    let fields = ""
+    let host = "{{ request.origin }}"
+    // test data
+    // let host = "http://127.0.0.1:9292";
 
     fetch(`${host}/search/suggest.json?q=${inputData}${options}`)
       .then((response) => response.json())
