@@ -60,15 +60,21 @@ function cartOperations(productData, operation) {
   })
     .then((response) => {
       console.log(response);
-      operation == "cart/add.js"
-        ? response.ok == true
-          ? alert("Successfully added :)")
-          : alert("Somethings goes wrong :(")
-        : response.ok == true
-        ? alert("Cart Successfully updated :)")
-        : alert("Somethings goes wrong :(");
+      if (operation == "cart/add.js") {
+        if (response.ok == true) {
+          alert("Successfully added :)");
+        } else {
+          getProductId(productData, operation);
+        }
 
-        cartCheck()
+        if (operation == "cart/update.js") {
+          response.ok == true
+            ? alert("Cart Successfully updated :)")
+            : alert("Somethings goes wrong :(");
+        }
+      }
+
+      cartCheck();
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -91,4 +97,39 @@ async function cartCheck() {
   checkCart.item_count == 0
     ? carteditForm.setAttribute("disabled", "disabled")
     : carteditForm.removeAttribute("disabled");
+}
+
+async function getProductId(productData, operation) {
+  let productHandle = JSON.parse(productData).items[0].id;
+  let quantity = JSON.parse(productData).items[0].quantity;
+
+  const productJson = await fetch(
+    window.Shopify.routes.root + `products/${productHandle}.js`,
+    {
+      method: "GET",
+    }
+  )
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+
+  if (!productJson.variants[0].id) {
+    alert("Somethings goes wrong :(");
+  }
+  let productId = productJson.variants[0].id;
+
+  let formData = {
+    items: [
+      {
+        id: productId,
+        quantity: quantity,
+      },
+    ],
+  };
+  let modifiedProductData = JSON.stringify(formData);
+
+  cartOperations(modifiedProductData, operation);
 }
