@@ -2,6 +2,7 @@
   "sections": {
     "image_banner": {
       "type": "image-banner",
+      "disabled": true,
       "blocks": {
         "heading": {
           "type": "heading",
@@ -49,6 +50,7 @@
     },
     "rich_text": {
       "type": "rich-text",
+      "disabled": true,
       "blocks": {
         "heading": {
           "type": "heading",
@@ -104,15 +106,18 @@
     },
     "collage": {
       "type": "collage",
+      "disabled": true,
       "blocks": {
         "collection-0": {
           "type": "collection",
+          "disabled": true,
           "settings": {
             "collection": ""
           }
         },
         "product": {
           "type": "product",
+          "disabled": true,
           "settings": {
             "product": "",
             "second_image": false
@@ -120,6 +125,7 @@
         },
         "collection-1": {
           "type": "collection",
+          "disabled": true,
           "settings": {
             "collection": ""
           }
@@ -142,6 +148,7 @@
     },
     "video": {
       "type": "video",
+      "disabled": true,
       "settings": {
         "heading": "",
         "heading_size": "h1",
@@ -155,6 +162,7 @@
     },
     "multicolumn": {
       "type": "multicolumn",
+      "disabled": true,
       "blocks": {
         "column1": {
           "type": "column",
