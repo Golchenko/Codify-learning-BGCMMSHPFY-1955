@@ -2,6 +2,7 @@
 
 {% if section.settings.show_section %}
    <div class="cart-operations page-width" style="padding: 60px 30px;">
+    <p>variant.id: {{ product.selected_or_first_available_variant.id }}</p> 
     <h2>{{ section.settings.section_title }}</h2>
             <form class="cart-add__form">
                 <input class="cart-add__product" type="text" placeholder="Enter product ID or Handle">
@@ -13,29 +14,52 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const cartAddSubmit = document.querySelector(".cart-add__submit"),
+        const cartAddSubmit = document.querySelector(".cart-add__submit"),
             cartAddproduct = document.querySelector(".cart-add__product"),
-            cartAddQuantity = document.querySelector(".cart-add__quantity");
+               cartAddQuantity = document.querySelector(".cart-add__quantity");
           
         cartAddSubmit.addEventListener("click", (event) => {
-        event.preventDefault();
-  
-        let addProduct = cartAddproduct.value,
-            addQuantity = cartAddQuantity.value;            
-  
-        if (addProduct && addQuantity) {
-          addToCart(addProduct, addQuantity);
-        } else {
-            alert('You did not specify a product!')
-        }
+            event.preventDefault();
+    
+            // let addProduct = cartAddproduct.value,
+            //     addQuantity = cartAddQuantity.value;  
+   
+            if (cartAddproduct.value && cartAddQuantity.value) {
+
+            let cartAddData = {
+                'items': [{
+                    'id': cartAddproduct.value,
+                    'quantity': cartAddQuantity.value
+                }]
+            };   
+
+            addToCart(cartAddData);
+            } else {
+                alert('You did not specify a product!')
+            }
+        });
     });
 
-    function addToCart(product, quantity) {
-console.log(product, quantity);
+    function addToCart(cartAddData) {
+        fetch(window.Shopify.routes.root + 'cart/add.js', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(cartAddData)
+        })
+        .then(response => {
+            (response.ok == true) ? 
+                alert('Product successfully added to cart.') : 
+                alert('Somethings goes wrong :(')
+            
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('Error:', error)
+        });
     }
 
 
-    });
+    
   
     
   </script>
