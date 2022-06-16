@@ -4,18 +4,20 @@
 <div class="cart-operations page-width" style="padding: 60px 30px">
     <p>variant.id: {{ product.selected_or_first_available_variant.id }}</p>
     <h2>{{ section.settings.section_title }}</h2>
-    <p>Add item to cart form</p>
+    
     <fieldset class="cart-add__form">
+        <p>Add item to cart</p>
       <input
         class="cart-add__product"
         type="text"
-        placeholder="Enter product ID"
+        placeholder="Enter product ID or product Handle"
       />
       <input class="cart-add__quantity" type="number" value="1" />
       <button class="cart-add__submit" type="submit">Add to cart</button>
     </fieldset>
-    <p>Remove item from cart</p>
+    <p> </p>
     <fieldset class="cart-edit__form">
+        <p>Remove item from cart</p>
       <input
         class="cart-remove__product"
         type="text"

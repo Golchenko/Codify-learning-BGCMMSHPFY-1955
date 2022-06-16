@@ -114,11 +114,10 @@ async function getProductId(productData, operation) {
     })
     .catch((error) => {
       console.error("Error:", error);
+      alert("Error, Invalid data entered :(");
     });
+  console.log("productJson", productJson);
 
-  if (!productJson.variants[0].id) {
-    alert("Somethings goes wrong :(");
-  }
   let productId = productJson.variants[0].id;
 
   let formData = {
