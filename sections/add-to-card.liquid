@@ -10,10 +10,16 @@
                 <input class="cart-add__quantity" type="number" value="1">
                 <button class="cart-add__submit" type="submit">Add to cart</button>
             </form>
-        <p>remove item from cart</p>
+        <p>Remove item from cart</p>
             <form class="cart-remove__form">
                 <input class="cart-remove__product" type="text" placeholder="Enter product ID">
                 <button class="cart-remove__submit" type="submit">Remove item</button>
+            </form>
+            <p>Update product quantity</p>
+            <form class="cart-add__form">
+                <input class="cart-update__product" type="text" placeholder="Enter product ID">
+                <input class="cart-update__quantity" type="number">
+                <button class="cart-update__submit" type="submit">Change quantity</button>
             </form>
    </div>
 {% endif %}

@@ -3,7 +3,11 @@ document.addEventListener("DOMContentLoaded", () => {
     cartAddProduct = document.querySelector(".cart-add__product"),
     cartAddQuantity = document.querySelector(".cart-add__quantity"),
     cartRemoveSubmit = document.querySelector(".cart-remove__submit"),
-    cartRemoveProduct = document.querySelector(".cart-remove__product");
+    cartRemoveProduct = document.querySelector(".cart-remove__product"),
+    cartUpdateProduct = document.querySelector(".cart-update__product"),
+    cartUpdateQuantity = document.querySelector(".cart-update__quantity"),
+    cartUpdateSubmit = document.querySelector(".cart-update__submit");
+
 
   cartAddSubmit.addEventListener("click", (event) => {
     event.preventDefault();
@@ -34,6 +38,17 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("You did not specify a product!");
     }
   });
+
+  cartUpdateSubmit.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (cartUpdateProduct.value && cartUpdateQuantity.value) {
+      let operation = "cart/update.js";
+      let productData = `{"updates":{"${cartRemoveProduct.value}":${cartUpdateQuantity.value}}}`;
+      cartOperations(productData, operation);
+    } else {
+      alert("Check the input data!");
+    }
+  });
 });
 
 function cartOperations(productData, operation) {
@@ -49,7 +64,7 @@ function cartOperations(productData, operation) {
           ? alert("Successfully added :)")
           : alert("Somethings goes wrong :(")
         : response.ok == true
-        ? alert("Successfully removed :)")
+        ? alert("Cart Successfully updated :)")
         : alert("Somethings goes wrong :(");
     })
     .catch((error) => {
