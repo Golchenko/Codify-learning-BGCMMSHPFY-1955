@@ -238,6 +238,16 @@
         "show_section": true,
         "product_video": "https:\/\/www.youtube.com\/watch?v=eAZMfItEbJ0"
       }
+    },
+    "1655379537d315f76c": {
+      "type": "custom-slider",
+      "settings": {
+        "show_section": true,
+        "custom_text_title": "Title",
+        "collection": "ben-10",
+        "limit": 10,
+        "autoplay_speed": "3000"
+      }
     }
   },
   "order": [
@@ -249,6 +259,7 @@
     "multicolumn",
     "16550492514397527f",
     "16550601617a810d9e",
-    "16550947326eec2502"
+    "16550947326eec2502",
+    "1655379537d315f76c"
   ]
 }
