@@ -1,0 +1,67 @@
+
+
+{% if section.settings.show_section %}
+   <div class="cart-operations page-width" style="padding: 60px 30px;">
+    <h2>{{ section.settings.section_title }}</h2>
+            <form class="cart-add__form">
+                <input class="cart-add__product" type="text" placeholder="Enter product ID or Handle">
+                <input class="cart-add__quantity" type="number" value="1">
+                <button class="cart-add__submit" type="submit">Add to cart</button>
+            </form>
+   </div>
+{% endif %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const cartAddSubmit = document.querySelector(".cart-add__submit"),
+            cartAddproduct = document.querySelector(".cart-add__product"),
+            cartAddQuantity = document.querySelector(".cart-add__quantity");
+          
+        cartAddSubmit.addEventListener("click", (event) => {
+        event.preventDefault();
+  
+        let addProduct = cartAddproduct.value,
+            addQuantity = cartAddQuantity.value;            
+  
+        if (addProduct && addQuantity) {
+          addToCart(addProduct, addQuantity);
+        } else {
+            alert('You did not specify a product!')
+        }
+    });
+
+    function addToCart(product, quantity) {
+console.log(product, quantity);
+    }
+
+
+    });
+  
+    
+  </script>
+
+{% schema %}
+  {
+    "name": "cart operations",
+    "settings": [
+      {
+         "type": "checkbox",
+         "id": "show_section",
+         "default": true,
+         "label": "Show section"
+      },
+      {
+         "id": "section_title",
+         "type": "text",
+         "label": "Text box heading",
+         "default": "Cart operations"
+      }
+    ],
+    "presets": [
+      {
+         "name": "cart operations",
+         "category": "Custom"
+      }
+   ]
+  }
+{% endschema %}
