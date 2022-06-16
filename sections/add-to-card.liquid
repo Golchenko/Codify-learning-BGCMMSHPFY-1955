@@ -1,0 +1,67 @@
+
+
+{% if section.settings.show_section %}
+<div class="cart-operations page-width" style="padding: 60px 30px">
+    <p>variant.id: {{ product.selected_or_first_available_variant.id }}</p>
+    <h2>{{ section.settings.section_title }}</h2>
+    
+    <fieldset class="cart-add__form">
+        <p>Add item to cart</p>
+      <input
+        class="cart-add__product"
+        type="text"
+        placeholder="Enter product ID or product Handle"
+      />
+      <input class="cart-add__quantity" type="number" value="1" />
+      <button class="cart-add__submit" type="submit">Add to cart</button>
+    </fieldset>
+    <p> </p>
+    <fieldset class="cart-edit__form">
+        <p>Remove item from cart</p>
+      <input
+        class="cart-remove__product"
+        type="text"
+        placeholder="Enter product ID"
+      />
+      <button class="cart-remove__submit" type="submit">Remove item</button>
+  
+      <p>Update product quantity</p>
+  
+      <input
+        class="cart-update__product"
+        type="text"
+        placeholder="Enter product ID"
+      />
+      <input class="cart-update__quantity" type="number" />
+      <button class="cart-update__submit" type="submit">Change quantity</button>
+    </fieldset>
+</div>
+{% endif %}
+
+{{ 'cart-operations.js' | asset_url | script_tag }}
+
+{% schema %}
+  {
+    "name": "cart operations",
+    "settings": [
+      {
+         "type": "checkbox",
+         "id": "show_section",
+         "default": true,
+         "label": "Show section"
+      },
+      {
+         "id": "section_title",
+         "type": "text",
+         "label": "Text box heading",
+         "default": "Cart operations"
+      }
+    ],
+    "presets": [
+      {
+         "name": "cart operations",
+         "category": "Custom"
+      }
+   ]
+  }
+{% endschema %}
