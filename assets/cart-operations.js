@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cartUpdateQuantity = document.querySelector(".cart-update__quantity"),
     cartUpdateSubmit = document.querySelector(".cart-update__submit");
 
+  cartCheck();
 
   cartAddSubmit.addEventListener("click", (event) => {
     event.preventDefault();
@@ -66,6 +67,8 @@ function cartOperations(productData, operation) {
         : response.ok == true
         ? alert("Cart Successfully updated :)")
         : alert("Somethings goes wrong :(");
+
+        cartCheck()
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -73,3 +76,19 @@ function cartOperations(productData, operation) {
     });
 }
 
+async function cartCheck() {
+  let carteditForm = document.querySelector(".cart-edit__form");
+  const checkCart = await fetch(window.Shopify.routes.root + `cart.js`, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+  console.log(checkCart);
+  checkCart.item_count == 0
+    ? carteditForm.setAttribute("disabled", "disabled")
+    : carteditForm.removeAttribute("disabled");
+}
