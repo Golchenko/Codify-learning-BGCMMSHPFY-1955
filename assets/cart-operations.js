@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
   cartAddSubmit.addEventListener("click", (event) => {
     event.preventDefault();
     if (cartAddProduct.value && cartAddQuantity.value) {
-      let productData = {
+      let operation = "cart/add.js";
+      let formData = {
         items: [
           {
             id: cartAddProduct.value,
@@ -16,7 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
           },
         ],
       };
-      addToCart(productData, operation);
+      let productData = JSON.stringify(formData);
+      cartOperations(productData, operation);
     } else {
       alert("You did not specify a product!");
     }
@@ -25,25 +27,29 @@ document.addEventListener("DOMContentLoaded", () => {
   cartRemoveSubmit.addEventListener("click", (event) => {
     event.preventDefault();
     if (cartRemoveProduct.value) {
+      let operation = "cart/update.js";
       let productData = `{"updates":{"${cartRemoveProduct.value}":0}}`;
-    //   console.log(`{"updates":{"${cartRemoveProduct.value}":0}}`);
-      removeFromCart(productData);
+      cartOperations(productData, operation);
     } else {
       alert("You did not specify a product!");
     }
   });
 });
 
-function addToCart(productData) {
-  fetch(window.Shopify.routes.root + `cart/add.js`, {
+function cartOperations(productData, operation) {
+  fetch(window.Shopify.routes.root + `${operation}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(productData),
+    body: productData,
   })
     .then((response) => {
       console.log(response);
-      response.ok == true
-        ? alert("Successfully added :)")
+      operation == "cart/add.js"
+        ? response.ok == true
+          ? alert("Successfully added :)")
+          : alert("Somethings goes wrong :(")
+        : response.ok == true
+        ? alert("Successfully removed :)")
         : alert("Somethings goes wrong :(");
     })
     .catch((error) => {
@@ -52,20 +58,3 @@ function addToCart(productData) {
     });
 }
 
-function removeFromCart(productData) {
-    fetch(window.Shopify.routes.root + `cart/update.js`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: productData,
-    })
-      .then((response) => {
-        console.log(response);
-        response.ok == true
-          ? alert("Successfully removed :)")
-          : alert("Somethings goes wrong :(");
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        alert("Error");
-      });
-  }
