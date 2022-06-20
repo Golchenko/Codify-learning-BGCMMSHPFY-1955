@@ -16,7 +16,7 @@
          {% if section.settings.collection != blank %}
          {%- assign collection = collections[section.settings.collection] -%}
             <!-- <div class="custom-slider" data-flickity='{ "cellAlign": "left", "contain": true, "wrapAround": true, "autoPlay": {{ section.settings.autoplay_speed }} }'>            -->
-            <div class="custom-slider-new" data-slick='{"autoplaySpeed": {{ section.settings.autoplay_speedf }}}'>           
+            <div class="custom-slider-new" data-slick='{"autoplaySpeed": {{ section.settings.autoplay_speed }}}'>           
               {%- for product in collection.products limit: section.settings.limit -%}
                     <div class="custom-slider__product slider-item">
                         <div class="slider-item__image">
@@ -91,7 +91,7 @@
         slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 200000,
+        autoplaySpeed: 2000,
         dots: false,
         arrows: true,
         responsive: [
