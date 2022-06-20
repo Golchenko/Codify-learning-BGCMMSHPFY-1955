@@ -228,6 +228,7 @@
         "show_section": true,
         "custom_text_title": "Title",
         "collection": "ben-10",
+        "product_handle": "activity-auto;activity-auto;activity-auto;activity-auto;activity-auto;activity-auto;activity-auto;activity-auto;activity-auto;activity-auto;",
         "limit": 9,
         "autoplay_speed": "3000"
       }
@@ -245,6 +246,17 @@
         "show_section": true,
         "custom_text_title": "Title",
         "collection": "ben-10",
+        "product_handle": "activity-auto;activity-auto;activity-auto;activity-auto;activity-auto;activity-auto;activity-auto;activity-auto;activity-auto;activity-auto;",
+        "limit": 10,
+        "autoplay_speed": "3000"
+      }
+    },
+    "1655755710a2716480": {
+      "type": "storefront-api-slider",
+      "settings": {
+        "show_section": true,
+        "custom_text_title": "Title",
+        "collection": "discounted-products",
         "limit": 10,
         "autoplay_speed": "3000"
       }
@@ -260,6 +272,7 @@
     "16550492514397527f",
     "16550601617a810d9e",
     "16550947326eec2502",
-    "1655379537d315f76c"
+    "1655379537d315f76c",
+    "1655755710a2716480"
   ]
 }
