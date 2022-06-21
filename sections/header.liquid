@@ -463,6 +463,13 @@
       {%- endif -%}
     {%- endif -%}
 
+    {% if section.settings.show_orders != blank %} 
+        <div class="header__orders" style="grid-area: icons; justify-self: end; margin-right: 120px;">
+          <p>You have {X} incomplete orders</p>
+        </div>
+    {% endif %}
+
+
     <div class="header__icons">
       <details-modal class="header__search">
         <details>
@@ -805,6 +812,12 @@
       "id": "show_line_separator",
       "default": true,
       "label": "t:sections.header.settings.show_line_separator.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_orders",
+      "default": true,
+      "label": "Show customer orders"
     },
     {
       "type": "checkbox",
