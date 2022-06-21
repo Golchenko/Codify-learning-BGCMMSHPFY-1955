@@ -97,10 +97,20 @@ const getCustomerOrders = (customerToken) => {
       console.log("CUSTOMER_ORDERS:", response);
       const customerOrders = response.data.customer.orders.edges;
 
-      showIncomleteOrders(customerOrders);
+      calculateIncomleteOrders(customerOrders);
     });
 };
 
-const showIncomleteOrders = (customerOrders) => {
+const calculateIncomleteOrders = (customerOrders) => {
+  let incomlitedOrdersCount = 0;
+  console.log(customerOrders);
+
+  customerOrders.map((order) => {
+    let isFulfillment = order.node.fulfillmentStatus;
+    let isCanceled = order.node.cancelReason;
+    isFulfillment == "FULFILLED" || isCanceled ? null : incomlitedOrdersCount++;
+    console.log("INCOMPLETED_ORDERS_COUNT: ", incomlitedOrdersCount);
     
-}
+    showIncomleteOrders(incomlitedOrdersCount);
+  });
+};
