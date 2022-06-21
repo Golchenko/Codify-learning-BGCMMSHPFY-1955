@@ -16,23 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 const getCustomerAccessToken = (customerEmail, customerPassword) => {
-  //   let customerData = `{
-  //         "email": "${customerEmail}",
-  //         "password": "${customerPassword}"
-  //       }`;
-
-  // const createTokenQuery = `
-  //       mutation createCustomerAccessToken {
-  //           customerAccessTokenCreate(input: {
-  //               "email": "${customerEmail}",
-  //               "password": "${customerPassword}"
-  //             })
-  //           customerAccessToken {
-  //               accessToken
-  //               expiresAt
-  //           }
-  //       }
-  //   `;
   const createTokenQuery = `
     mutation {
         customerAccessTokenCreate(
@@ -53,7 +36,7 @@ const getCustomerAccessToken = (customerEmail, customerPassword) => {
     }
   `;
 
-  const graphqBody = () => {
+  const requestBody = () => {
     return {
       async: true,
       crossDomain: true,
@@ -66,12 +49,58 @@ const getCustomerAccessToken = (customerEmail, customerPassword) => {
     };
   };
 
-  fetch(graphqlUrl, graphqBody())
+  fetch(graphqlUrl, requestBody())
     .then((res) => res.json())
     .then((response) => {
-        const customerToken = response.data.customerAccessTokenCreate.customerAccessToken.accessToken;
-      console.log("token", customerToken);
+      const customerToken =
+        response.data.customerAccessTokenCreate.customerAccessToken.accessToken;
+      console.log("CUSTOMER_TOKEN: ", customerToken);
+
+      getCustomerOrders(customerToken);
     });
-
-
 };
+
+const getCustomerOrders = (customerToken) => {
+  const getCustomerOrdersQuery = `
+        { 
+            customer(customerAccessToken: "${customerToken}") {
+                id
+                orders(first: 15, sortKey: ID, reverse: true) {
+                    edges {
+                        node {
+                            name
+                            fulfillmentStatus
+                            cancelReason
+                        }
+                    }
+                }
+            }
+        }
+    `;
+
+  const requestBody = () => {
+    return {
+      async: true,
+      crossDomain: true,
+      method: "POST",
+      headers: {
+        "X-Shopify-Storefront-Access-Token": storefrontAccessToken,
+        "Content-Type": "application/graphql",
+      },
+      body: getCustomerOrdersQuery,
+    };
+  };
+
+  fetch(graphqlUrl, requestBody())
+    .then((res) => res.json())
+    .then((response) => {
+      console.log("CUSTOMER_ORDERS:", response);
+      const customerOrders = response.data.customer.orders.edges;
+
+      showIncomleteOrders(customerOrders);
+    });
+};
+
+const showIncomleteOrders = (customerOrders) => {
+    
+}
