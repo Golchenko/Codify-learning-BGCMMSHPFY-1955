@@ -464,9 +464,15 @@
     {%- endif -%}
 
     {% if section.settings.show_orders != blank %} 
-        <div class="header__orders" style="grid-area: icons; justify-self: end; margin-right: 120px;">
-          <p>You have {X} incomplete orders</p>
-        </div>
+    {{ 'customer-orders.js' | asset_url | script_tag }}
+      {% if customer %}
+      {% assign customerEmail = customer.email %}
+      {% assign customerPassword = value %}
+          <div class="header__orders" style="grid-area: icons; justify-self: end; margin-right: 120px;">
+            <p>You have {X} incomplete orders</p>
+            {{customerEmail}}
+          </div>
+      {% endif %}
     {% endif %}
 
 
