@@ -465,9 +465,10 @@
 
     {% if section.settings.show_orders != blank %} 
     {{ 'customer-orders.js' | asset_url | script_tag }}
+      {% if customer %}
           <div class="header__orders" id="headerOrders" style="grid-area: icons; justify-self: end; margin-right: 120px;">
-            <p>You have {X} incomplete orders</p>
           </div>
+      {% endif %}
     {% endif %}
 
 

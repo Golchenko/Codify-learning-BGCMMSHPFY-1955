@@ -7,14 +7,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const customerButton = document.querySelector("#customerBtn");
   const headerElement = document.querySelector("#headerOrders");
 
+  customerButton
+    ? getCustomerCredentials(customerButton, loginEmail, loginPassword)
+    : null;
+
+  updateCookie();
+
+  readFromCookie(headerElement);
+});
+
+const getCustomerCredentials = (customerButton, loginEmail, loginPassword) => {
   customerButton.addEventListener("click", (event) => {
-    event.preventDefault();
+    // event.preventDefault();
 
     let customerEmail = loginEmail.value;
     let customerPassword = loginPassword.value;
     getCustomerAccessToken(customerEmail, customerPassword);
   });
-});
+};
 
 const getCustomerAccessToken = (customerEmail, customerPassword) => {
   const createTokenQuery = `
@@ -57,6 +67,7 @@ const getCustomerAccessToken = (customerEmail, customerPassword) => {
         response.data.customerAccessTokenCreate.customerAccessToken.accessToken;
       console.log("CUSTOMER_TOKEN: ", customerToken);
 
+      document.cookie = `token=${customerToken}; path=/`;
       getCustomerOrders(customerToken);
     });
 };
@@ -111,10 +122,11 @@ const calculateIncomleteOrders = (customerOrders) => {
     isFulfillment == "FULFILLED" || isCanceled ? null : incomlitedOrdersCount++;
   });
   console.log("INCOMPLETED_ORDERS_COUNT: ", incomlitedOrdersCount);
-  createCoockie(incomlitedOrdersCount);
+
+  createCookie(incomlitedOrdersCount);
 };
 
-const createCoockie = (incomlitedOrdersCount) => {
+const createCookie = (incomlitedOrdersCount) => {
   let headerMessage =
     incomlitedOrdersCount == 0
       ? "All of your orders were completed"
@@ -122,4 +134,30 @@ const createCoockie = (incomlitedOrdersCount) => {
 
   console.log(headerMessage);
   document.cookie = `message=${headerMessage}; path=/`;
+};
+
+const readFromCookie = (headerElement) => {
+  console.log("LOAD");
+  const cookieValue = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith("message="))
+    ?.split("=")[1];
+  console.log("cookie:", cookieValue);
+
+  showHeaderMessage(headerElement, cookieValue);
+};
+
+const showHeaderMessage = (headerElement, cookieValue) => {
+  headerElement ? (headerElement.innerHTML = cookieValue) : null;
+};
+
+const updateCookie = () => {
+  console.log("UPDATE");
+  const cookieToken = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith("token="))
+    ?.split("=")[1];
+  console.log("token:", cookieToken);
+
+  getCustomerOrders(cookieToken);
 };
