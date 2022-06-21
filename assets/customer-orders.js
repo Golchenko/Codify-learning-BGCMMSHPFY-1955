@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const loginEmail = document.querySelector("#CustomerEmail");
   const loginPassword = document.querySelector("#CustomerPassword");
   const customerButton = document.querySelector("#customerBtn");
+  const headerElement = document.querySelector("#headerOrders");
 
   customerButton.addEventListener("click", (event) => {
     event.preventDefault();
@@ -94,8 +95,8 @@ const getCustomerOrders = (customerToken) => {
   fetch(graphqlUrl, requestBody())
     .then((res) => res.json())
     .then((response) => {
-      console.log("CUSTOMER_ORDERS:", response);
       const customerOrders = response.data.customer.orders.edges;
+      console.log("CUSTOMER_ORDERS:", customerOrders);
 
       calculateIncomleteOrders(customerOrders);
     });
@@ -103,14 +104,22 @@ const getCustomerOrders = (customerToken) => {
 
 const calculateIncomleteOrders = (customerOrders) => {
   let incomlitedOrdersCount = 0;
-  console.log(customerOrders);
 
   customerOrders.map((order) => {
     let isFulfillment = order.node.fulfillmentStatus;
     let isCanceled = order.node.cancelReason;
     isFulfillment == "FULFILLED" || isCanceled ? null : incomlitedOrdersCount++;
-    console.log("INCOMPLETED_ORDERS_COUNT: ", incomlitedOrdersCount);
-    
-    showIncomleteOrders(incomlitedOrdersCount);
   });
+  console.log("INCOMPLETED_ORDERS_COUNT: ", incomlitedOrdersCount);
+  createCoockie(incomlitedOrdersCount);
+};
+
+const createCoockie = (incomlitedOrdersCount) => {
+  let headerMessage =
+    incomlitedOrdersCount == 0
+      ? "All of your orders were completed"
+      : `You have ${incomlitedOrdersCount} incomplete orders`;
+
+  console.log(headerMessage);
+  document.cookie = `message=${headerMessage}; path=/`;
 };
