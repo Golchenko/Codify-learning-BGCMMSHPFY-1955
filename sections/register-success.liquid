@@ -1,2 +1,77 @@
 {{ 'register-success.css' | asset_url | stylesheet_tag }}
 {{ 'register-success.js' | asset_url | script_tag }}
+
+
+   <div class="register-success__desktop">
+        <h1>@@@</h1>
+   </div>
+
+
+{% schema %}
+  {
+    "name": "Customer register success",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Desktop settings"
+      },
+      {
+         "id": "message_desktop",
+         "type": "text",
+         "label": "success message",
+         "default": "Hi,"
+      },
+      {
+        "id": "image_desktop",
+        "type": "image_picker",
+        "label": "Add image"
+      },
+      {
+         "id": "background_desktop",
+         "type": "color",
+         "label": "Background color"
+      },
+      {
+        "id": "text_color_desktop",
+        "type": "color",
+        "label": "Text color"
+      },
+      {
+        "type": "header",
+        "content": "Mobile settings"
+      },
+      {
+        "id": "message_mobile",
+        "type": "text",
+        "label": "success mesage",
+        "default": "Welcome,"
+      },
+      {
+        "id": "image_mobile",
+        "type": "image_picker",
+        "label": "Add image"
+      },
+      {
+        "id": "background_mobile",
+        "type": "color",
+        "label": "Background color"
+      },
+      {
+        "id": "text_color_mobile",
+        "type": "color",
+        "label": "Text color"
+      },
+      {
+        "id": "mobile_animation",
+        "type": "checkbox",
+        "label": "Enable mobile animation"
+      }
+    ],
+    "presets": [
+      {
+         "name": "Customer register success",
+         "category": "Custom"
+      }
+   ]
+  }
+{% endschema %}
