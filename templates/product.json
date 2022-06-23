@@ -251,6 +251,13 @@
         "custom_text_title": "Title",
         "custom_text_body": "<p>Add your text here<\/p>"
       }
+    },
+    "1655986459d50aa142": {
+      "type": "add-to-card",
+      "settings": {
+        "show_section": true,
+        "section_title": "Cart operations"
+      }
     }
   },
   "order": [
@@ -262,6 +269,7 @@
     "image-with-text",
     "multicolumn",
     "product-recommendations",
-    "1655379513745a00e8"
+    "1655379513745a00e8",
+    "1655986459d50aa142"
   ]
 }
