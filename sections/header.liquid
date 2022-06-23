@@ -11,6 +11,20 @@
   <link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
   <noscript>{{ 'component-mega-menu.css' | asset_url | stylesheet_tag }}</noscript>
 {%- endif -%}
+{%- if section.settings.show_new_user_message -%}
+<script>
+  let modalTitle = `{{section.settings.message_desktop}} {{customer.first_name}}`,
+      modalImage = `{{section.settings.image_mobile | image_url: width:280}}`,
+      modalBackground = `{{section.settings.background_mobile}}`,
+      modalTextColor = `{{section.settings.success_text_color}}`,
+      modalAnimation = `{{section.settings.mobile_animation}}`;
+</script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+
+  <!-- {{ 'micromodal.css' | asset_url | stylesheet_tag }} -->
+  {{ 'register-success.js' | asset_url | script_tag }}
+
+{%- endif -%}
 
 <noscript>{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-search.css' | asset_url | stylesheet_tag }}</noscript>
@@ -466,7 +480,7 @@
     {% if section.settings.show_orders != blank %} 
     {{ 'customer-orders.js' | asset_url | script_tag }}
       {% if customer %}
-          <div class="header__orders" id="headerOrders" style="grid-area: icons; justify-self: end; margin-right: 120px;">
+          <div class="header__orders" id="headerOrders" style="grid-area: icons;">
           </div>
       {% endif %}
     {% endif %}
@@ -559,6 +573,9 @@
             -%}
           </span>
         </a>
+        {%- if customer -%}
+          <span id="customerSuccessMessage" style="line-height: 41px; display: none;">{{section.settings.message_desktop}} {{customer.first_name}}</span>
+        {%- endif -%}
       {%- endif -%}
 
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
@@ -841,7 +858,50 @@
       "unit": "px",
       "label": "t:sections.header.settings.margin_bottom.label",
       "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Customer register success settings"
+    },  
+    {
+      "id": "show_new_user_message",
+      "type": "checkbox",
+      "label": "Enable success mesage",
+      "default": true
+    },
+    {
+      "id": "message_desktop",
+      "type": "text",
+      "label": "success mesage desktop",
+      "default": "Welcome,"
+    },
+    {
+      "id": "message_mobile",
+      "type": "text",
+      "label": "success mesage mobile",
+      "default": "Welcome,"
+    },
+    {
+      "id": "image_mobile",
+      "type": "image_picker",
+      "label": "mobile image"
+    },
+    {
+      "id": "background_mobile",
+      "type": "color",
+      "label": "Background color on mobile"
+    },
+    {
+      "id": "success_text_color",
+      "type": "color",
+      "label": "Text color"
+    },
+    {
+      "id": "mobile_animation",
+      "type": "checkbox",
+      "label": "Enable mobile animation"
     }
+    
   ]
 }
 {% endschema %}
