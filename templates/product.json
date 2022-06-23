@@ -258,6 +258,16 @@
         "show_section": true,
         "section_title": "Cart operations"
       }
+    },
+    "16559890648023cfb1": {
+      "type": "storefront-api-slider",
+      "settings": {
+        "show_section": true,
+        "custom_text_title": "Title",
+        "collection": "discounted-products",
+        "limit": 10,
+        "autoplay_speed": "3000"
+      }
     }
   },
   "order": [
@@ -270,6 +280,7 @@
     "multicolumn",
     "product-recommendations",
     "1655379513745a00e8",
-    "1655986459d50aa142"
+    "1655986459d50aa142",
+    "16559890648023cfb1"
   ]
 }
