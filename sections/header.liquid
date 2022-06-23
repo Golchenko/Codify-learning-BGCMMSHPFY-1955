@@ -12,6 +12,13 @@
   <noscript>{{ 'component-mega-menu.css' | asset_url | stylesheet_tag }}</noscript>
 {%- endif -%}
 {%- if section.settings.show_new_user_message -%}
+<script>
+  let modalTitle = `{{section.settings.message_desktop}} {{customer.first_name}}`,
+      modalImage = `{{section.settings.image_mobile | image_url: width:280}}`,
+      modalBackground = `{{section.settings.background_mobile}}`,
+      modalTextColor = `{{section.settings.success_text_color}}`,
+      modalAnimation = `{{section.settings.mobile_animation}}`;
+</script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
 
   <!-- {{ 'micromodal.css' | asset_url | stylesheet_tag }} -->

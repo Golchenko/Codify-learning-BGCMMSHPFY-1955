@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
   customerRegister ? writeCookie(customerRegister) : null;
 
   showWelcomeMessage(headerMessage);
+console.log(modalImage);
+
 });
 
 const writeCookie = (customerRegister) => {
@@ -35,12 +37,18 @@ const deleteCookie = () => {
 };
 
 const showMoileModal = () => {
-  Swal.fire(
-    'Good job!',
-    'You clicked the button!',
-    'success'
-  )
-}
+  Swal.fire({
+    icon: modalAnimation ? "success" : false,
+    title: `${modalTitle}`,
+    imageUrl: `${modalImage}`,
+    imageWidth: 280,
+    imageHeight: "auto",
+    color: `${modalTextColor}`,
+    background: `${modalBackground}`,
+    timer: 30000,
+    showConfirmButton: false,
+  });
+};
 
 //   (function() {
 //     const REDIRECT_PATH = '/pages/customer-register-success';
