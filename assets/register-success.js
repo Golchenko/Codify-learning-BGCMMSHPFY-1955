@@ -1,7 +1,36 @@
 document.addEventListener("DOMContentLoaded", () => {
-console.log("!!!!!!!!!!!!!!!!");
-  });
+  const customerRegister = document.querySelector("#customerRegister"),
+    headerMessage = document.querySelector("#customerSuccessMessage");
 
+  customerRegister ? writeCookie(customerRegister) : null;
+
+  showWelcomeMessage(headerMessage);
+});
+
+const writeCookie = (customerRegister) => {
+  customerRegister.addEventListener("click", (event) => {
+    // event.preventDefault();
+    document.cookie = `new-customer=true; path=/`;
+  });
+};
+
+const showWelcomeMessage = (headerMessage) => {
+  const cookieValue = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith("new-customer="))
+    ?.split("=")[1];
+  console.log("cookie:", cookieValue);
+  if (cookieValue == "true") {
+    headerMessage.style.display = "block";
+    console.log("SHOW message");
+    deleteCookie();
+  }
+};
+
+const deleteCookie = () => {
+  document.cookie = "new-customer=true; max-age=0";
+  console.log(document.cookie);
+}
 
 //   (function() {
 //     const REDIRECT_PATH = '/pages/customer-register-success';

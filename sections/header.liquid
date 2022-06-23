@@ -470,7 +470,7 @@
     {% if section.settings.show_orders != blank %} 
     {{ 'customer-orders.js' | asset_url | script_tag }}
       {% if customer %}
-          <div class="header__orders" id="headerOrders" style="grid-area: icons; justify-self: end; margin-right: 120px;">
+          <div class="header__orders" id="headerOrders" style="grid-area: icons;">
           </div>
       {% endif %}
     {% endif %}
@@ -563,6 +563,9 @@
             -%}
           </span>
         </a>
+        {%- if customer -%}
+          <span id="customerSuccessMessage" style="line-height: 41px; display: none;">{{section.settings.message_desktop}} {{customer.first_name}}</span>
+        {%- endif -%}
       {%- endif -%}
 
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
