@@ -45,7 +45,7 @@ const showMoileModal = () => {
     imageHeight: "auto",
     color: `${modalTextColor}`,
     background: `${modalBackground}`,
-    timer: 30000,
+    timer: 3000,
     showConfirmButton: false,
   });
 };
