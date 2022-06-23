@@ -11,6 +11,10 @@
   <link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
   <noscript>{{ 'component-mega-menu.css' | asset_url | stylesheet_tag }}</noscript>
 {%- endif -%}
+{%- if section.settings.show_new_user_message -%}
+  {{ 'register-success.css' | asset_url | stylesheet_tag }}
+  {{ 'register-success.js' | asset_url | script_tag }}
+{%- endif -%}
 
 <noscript>{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-search.css' | asset_url | stylesheet_tag }}</noscript>
@@ -841,7 +845,50 @@
       "unit": "px",
       "label": "t:sections.header.settings.margin_bottom.label",
       "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Customer register success settings"
+    },  
+    {
+      "id": "show_new_user_message",
+      "type": "checkbox",
+      "label": "Enable success mesage",
+      "default": true
+    },
+    {
+      "id": "message_desktop",
+      "type": "text",
+      "label": "success mesage desktop",
+      "default": "Welcome,"
+    },
+    {
+      "id": "message_mobile",
+      "type": "text",
+      "label": "success mesage mobile",
+      "default": "Welcome,"
+    },
+    {
+      "id": "image_mobile",
+      "type": "image_picker",
+      "label": "mobile image"
+    },
+    {
+      "id": "background_mobile",
+      "type": "color",
+      "label": "Background color on mobile"
+    },
+    {
+      "id": "success_text_color",
+      "type": "color",
+      "label": "Text color"
+    },
+    {
+      "id": "mobile_animation",
+      "type": "checkbox",
+      "label": "Enable mobile animation"
     }
+    
   ]
 }
 {% endschema %}
