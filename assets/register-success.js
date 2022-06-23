@@ -21,15 +21,25 @@ const showWelcomeMessage = (headerMessage) => {
     ?.split("=")[1];
   console.log("cookie:", cookieValue);
   if (cookieValue == "true") {
-    headerMessage.style.display = "block";
-    console.log("SHOW message");
+    window.innerWidth >= 990
+      ? (headerMessage.style.display = "block")
+      : showMoileModal();
+
     deleteCookie();
   }
 };
-
+console.log(window.innerWidth);
 const deleteCookie = () => {
   document.cookie = "new-customer=true; max-age=0";
   console.log(document.cookie);
+};
+
+const showMoileModal = () => {
+  Swal.fire(
+    'Good job!',
+    'You clicked the button!',
+    'success'
+  )
 }
 
 //   (function() {

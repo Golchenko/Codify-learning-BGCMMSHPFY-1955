@@ -12,8 +12,11 @@
   <noscript>{{ 'component-mega-menu.css' | asset_url | stylesheet_tag }}</noscript>
 {%- endif -%}
 {%- if section.settings.show_new_user_message -%}
-  {{ 'register-success.css' | asset_url | stylesheet_tag }}
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+
+  <!-- {{ 'micromodal.css' | asset_url | stylesheet_tag }} -->
   {{ 'register-success.js' | asset_url | script_tag }}
+
 {%- endif -%}
 
 <noscript>{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}</noscript>
