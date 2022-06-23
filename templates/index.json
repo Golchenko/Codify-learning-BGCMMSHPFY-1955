@@ -245,7 +245,7 @@
       "settings": {
         "show_section": true,
         "custom_text_title": "Title",
-        "collection": "ben-10",
+        "collection": "",
         "product_handle": "activity-auto;activity-auto;activity-auto;activity-auto;activity-auto;activity-auto;activity-auto;activity-auto;activity-auto;activity-auto;",
         "limit": 10,
         "autoplay_speed": "3000"
