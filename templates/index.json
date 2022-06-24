@@ -294,36 +294,19 @@
             "heading_size": "h1",
             "subheading": "Tell your brand's story through images",
             "button_label": "Button label",
-            "link": "",
+            "link": "shopify:\/\/products\/2-in-1-skin-moisturizing-beard-conditioner-100ml-3-3oz",
             "button_style_secondary": false,
-            "box_align": "middle-center",
+            "box_align": "middle-left",
             "show_text_box": true,
-            "text_alignment": "center",
-            "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
-            "description": ""
-          }
-        },
-        "62b6d546-fbe5-428c-bdad-fbf0168651b5": {
-          "type": "video",
-          "settings": {
-            "heading": "Image slide",
-            "heading_size": "h1",
-            "subheading": "Tell your brand's story through images",
-            "button_label": "Button label",
-            "link": "",
-            "button_style_secondary": false,
-            "box_align": "middle-center",
-            "show_text_box": true,
-            "text_alignment": "center",
-            "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+            "text_alignment": "left",
+            "video_url": "https:\/\/www.youtube.com\/watch?v=gHfe1xTpomE",
             "description": ""
           }
         }
       },
       "block_order": [
         "1656081134a3876d1b-0",
-        "1656081134a3876d1b-1",
-        "62b6d546-fbe5-428c-bdad-fbf0168651b5"
+        "1656081134a3876d1b-1"
       ],
       "settings": {
         "layout": "full_bleed",
