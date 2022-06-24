@@ -1,0 +1,99 @@
+{{ 'component-image-with-text.css' | asset_url | stylesheet_tag }}
+
+{% if section.settings.show_section %}
+  <div class="custom-carousel">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'image_slide' %}
+          <div class="image-slide" {{ block.shopify_attributes }}>
+            <a href="{{ block.settings.url}}">{{ block.settings.text }}</a>
+            {{ block.settings.image | image_url: width: 2048 | image_tag }}
+          </div>
+        {% when 'video_slide' %}
+          <div class="video-slide" {{ block.shopify_attributes }}>
+            <a href="{{ block.settings.url}}">{{ block.settings.text }}</a>
+            <iframe
+              src="https://www.youtube.com/embed/{{ block.settings.video_url.id }}?enablejsapi=1"
+              class="js-youtube"
+              allow="autoplay; encrypted-media"
+              allowfullscreen
+            ></iframe>
+          </div>
+      {% endcase %}
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Custom carousel",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "default": true,
+      "label": "Show section"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Image",
+      "type": "image_slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "default": "Slide text with link",
+          "label": "slide text"
+        },
+        {
+          "type": "text",
+          "id": "url",
+          "default": "https://shopify.dev/api/consent-tracking",
+          "label": "url"
+        }
+      ]
+    },
+    {
+      "name": "Video",
+      "type": "video_slide",
+      "settings": [
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "accept": [
+            "youtube"
+          ],
+          "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+          "label": "t:sections.video.settings.video_url.label",
+          "placeholder": "t:sections.video.settings.video_url.placeholder",
+          "info": "t:sections.video.settings.video_url.info"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "default": "Slide text with link",
+          "label": "slide text"
+        },
+        {
+          "type": "text",
+          "id": "url",
+          "default": "https://shopify.dev/api/consent-tracking",
+          "label": "url"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom carousel",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
