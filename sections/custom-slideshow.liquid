@@ -210,6 +210,7 @@
               <deferred-media
                 class="video-section__media deferred-media no-js-hidden gradient global-media-settings{% if block.settings.full_width %} global-media-settings--full-width{% endif %}"
                 data-media-id="{{ block.settings.video_url.id }}"
+                style="padding-bottom: 0;"
               >
                 {%- if block.settings.video_url.type == 'youtube' -%}
                   <iframe
@@ -465,7 +466,7 @@
   "blocks": [
     {
       "type": "image",
-      "name": "t:sections.slideshow.blocks.slide.name",
+      "name": "Image",
       "limit": 5,
       "settings": [
         {
@@ -661,7 +662,7 @@
     },
     {
       "type": "video",
-      "name": "video",
+      "name": "Video",
       "limit": 5,
       "settings": [
         {
