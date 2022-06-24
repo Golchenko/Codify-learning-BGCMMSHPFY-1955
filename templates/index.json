@@ -265,6 +265,75 @@
         "limit": 10,
         "autoplay_speed": "3000"
       }
+    },
+    "165608113450d5940a": {
+      "type": "custom-slideshow",
+      "blocks": {
+        "1656081134a3876d1b-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/IMG_0866.jpg",
+            "heading": "Image slide",
+            "heading_size": "h1",
+            "subheading": "Tell your brand's story through images",
+            "button_label": "Button label",
+            "link": "shopify:\/\/collections\/adidas",
+            "button_style_secondary": false,
+            "box_align": "middle-left",
+            "show_text_box": true,
+            "text_alignment": "left",
+            "image_overlay_opacity": 0,
+            "color_scheme": "inverse",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "1656081134a3876d1b-1": {
+          "type": "video",
+          "settings": {
+            "heading": "Image slide",
+            "heading_size": "h1",
+            "subheading": "Tell your brand's story through images",
+            "button_label": "Button label",
+            "link": "",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": true,
+            "text_alignment": "center",
+            "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+            "description": ""
+          }
+        },
+        "62b6d546-fbe5-428c-bdad-fbf0168651b5": {
+          "type": "video",
+          "settings": {
+            "heading": "Image slide",
+            "heading_size": "h1",
+            "subheading": "Tell your brand's story through images",
+            "button_label": "Button label",
+            "link": "",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": true,
+            "text_alignment": "center",
+            "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+            "description": ""
+          }
+        }
+      },
+      "block_order": [
+        "1656081134a3876d1b-0",
+        "1656081134a3876d1b-1",
+        "62b6d546-fbe5-428c-bdad-fbf0168651b5"
+      ],
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "large",
+        "slider_visual": "counter",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "show_text_below": true,
+        "accessibility_info": "Slideshow about our brand"
+      }
     }
   },
   "order": [
@@ -278,6 +347,7 @@
     "16550601617a810d9e",
     "16550947326eec2502",
     "1655379537d315f76c",
-    "1655755710a2716480"
+    "1655755710a2716480",
+    "165608113450d5940a"
   ]
 }
