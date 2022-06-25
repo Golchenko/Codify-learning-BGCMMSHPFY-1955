@@ -60,7 +60,6 @@ const showProductSpecs = (metafields) => {
   let specs = JSON.parse(str.replace(str[0], "[").replace(/.$/, "]"));
   let template = "";
   specs.map((item) => {
-    console.log(item.key, ":", item.value);
     let element = `<p>${item.key} : ${item.value}</p>`;
     template += element;
   });
