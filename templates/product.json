@@ -95,7 +95,7 @@
           "type": "metafields_tab",
           "settings": {
             "heading": "Product specifications",
-            "metafield_keys": "country,weight,manufacturer,application,material",
+            "metafield_keys": "country,weight,manufacturer,application,material,product manual",
             "metafield_namespace": "specs",
             "icon": "apple"
           }
