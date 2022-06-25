@@ -90,6 +90,15 @@
           "settings": {
             "share_label": "Share"
           }
+        },
+        "afab73ab-ce70-449f-a3b5-71e4c526fa3d": {
+          "type": "metafields_tab",
+          "settings": {
+            "heading": "Product specifications",
+            "metafield_keys": "country,weight,manufacturer,application,material",
+            "metafield_namespace": "specs",
+            "icon": "apple"
+          }
         }
       },
       "block_order": [
@@ -105,7 +114,8 @@
         "collapsible-row-1",
         "collapsible-row-2",
         "collapsible-row-3",
-        "share"
+        "share",
+        "afab73ab-ce70-449f-a3b5-71e4c526fa3d"
       ],
       "settings": {
         "enable_sticky_info": true,
