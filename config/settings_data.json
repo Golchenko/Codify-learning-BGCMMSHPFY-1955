@@ -195,7 +195,15 @@
     },
     "content_for_index": [
 
-    ]
+    ],
+    "blocks": {
+      "bss-b2b-f5138fe6f7bc": {
+        "type": "shopify:\/\/apps\/bss-b2b-wholesale-solution\/blocks\/config-header\/451233f2-9631-4c49-8b6f-057e4ebcde7f",
+        "disabled": false,
+        "settings": {
+        }
+      }
+    }
   },
   "presets": {
     "Default": {
